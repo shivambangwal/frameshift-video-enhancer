@@ -1,0 +1,4 @@
+# Local deployment metadata and generated archives
+/.openai/
+/outputs/
+.DS_Store
