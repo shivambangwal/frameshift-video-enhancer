@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111318" />
+    <meta name="description" content="Enhance video clarity, reduce noise, and export at higher resolutions with FrameShift." />
+    <title>FrameShift — AI Video Enhancer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="FrameShift home">
+          <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+          <span class="brand-name">frame<span>shift</span></span>
+        </a>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="side-nav">
+          <a class="nav-item active" href="#studio"><span class="nav-icon">◈</span>Enhance video</a>
+          <a class="nav-item disabled" href="#exports" aria-disabled="true"><span class="nav-icon">▤</span>My exports <span class="soon">SOON</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="privacy-card">
+            <div class="privacy-icon">⌁</div>
+            <div class="privacy-title">Your footage stays yours.</div>
+            <p>In this demo, videos are processed in your browser and never uploaded.</p>
+          </div>
+          <div class="account-row"><div class="account-avatar">FS</div><div><strong>Personal workspace</strong><span>Local studio</span></div><span class="more">···</span></div>
+        </div>
+      </aside>
+
+      <main class="main" id="top">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Workspace</span><i>/</i><strong>Enhance video</strong></div>
+          <div class="top-actions"><span class="local-pill"><span class="status-dot"></span>LOCAL MODE</span><button class="help-button" type="button" aria-label="About this demo" title="About this demo">?</button></div>
+        </header>
+
+        <section class="intro" id="studio">
+          <div class="intro-copy">
+            <div class="eyebrow"><span class="sparkle">✳</span> AI VIDEO ENHANCER</div>
+            <h1>Make every frame<br /><span>a little more vivid.</span></h1>
+            <p>Bring low-resolution footage into focus. Reduce noise and compression marks, reveal more detail, and prepare every shot for the screen it deserves.</p>
+          </div>
+          <div class="intro-note"><span class="note-line"></span><span>UP TO<br /><b>8K</b> EXPORT</span></div>
+        </section>
+
+        <section class="steps" aria-label="Enhancement steps">
+          <div class="step active" id="step-1"><span class="step-num">01</span><span class="step-copy"><b>Upload your video</b><small>MP4, MOV, M4V, 3GP, AVI</small></span></div>
+          <span class="step-connector"></span>
+          <div class="step" id="step-2"><span class="step-num">02</span><span class="step-copy"><b>Choose enhancement</b><small>Auto or tune it yourself</small></span></div>
+          <span class="step-connector"></span>
+          <div class="step" id="step-3"><span class="step-num">03</span><span class="step-copy"><b>Preview & export</b><small>Choose a format and save</small></span></div>
+        </section>
+
+        <section class="studio-grid" aria-label="Video enhancement studio">
+          <div class="preview-column">
+            <div class="panel preview-panel">
+              <div class="panel-heading">
+                <div><div class="section-kicker">YOUR FOOTAGE</div><h2>Preview</h2></div>
+                <div class="preview-head-right"><span class="resolution-chip" id="source-resolution">SOURCE · —</span><button class="icon-button" id="replace-button" type="button" title="Choose a different video" aria-label="Choose a different video" hidden>↻</button></div>
+              </div>
+              <div class="media-stage" id="media-stage">
+                <div class="empty-art" id="empty-art" aria-hidden="true">
+                  <div class="sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div><div class="water"></div><div class="grain"></div>
+                  <div class="art-label"><span class="art-dot"></span> A BETTER FRAME IS A FEW CLICKS AWAY</div>
+                </div>
+                <video id="original-video" playsinline muted loop aria-label="Original video preview" hidden></video>
+                <video id="enhanced-video" playsinline muted loop aria-label="Enhanced video preview" hidden></video>
+                <div class="stage-shade" id="stage-shade"></div>
+                <div class="empty-message" id="empty-message"><div class="upload-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4.5 14.5v4A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5v-4" /></svg></div><b>Your next great video starts here</b><span>Drop, paste, or upload a clip to see the difference.</span></div>
+                <div class="video-badge original-badge" id="original-badge" hidden>ORIGINAL</div>
+                <div class="video-badge enhanced-badge" id="enhanced-badge" hidden><span>✳</span> ENHANCED</div>
+                <div class="compare-divider" id="compare-divider" hidden><span class="compare-handle">↔</span></div>
+                <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="52" aria-label="Drag to compare original and enhanced video" hidden />
+                <div class="stage-center-hint" id="stage-center-hint" hidden><span class="play-glyph">▶</span></div>
+                <div class="duration-chip" id="duration-chip" hidden>00:00</div>
+              </div>
+              <div class="preview-footer">
+                <div class="file-meta" id="file-meta"><span class="file-icon">▣</span><span><b id="file-name">No video selected</b><small id="file-details">Your preview will appear here</small></span></div>
+                <button class="upload-button" id="upload-button" type="button"><span>↑</span> Upload video</button>
+              </div>
+              <div class="transport" id="transport" hidden>
+                <button id="play-button" class="transport-play" type="button" aria-label="Play video">▶</button>
+                <span class="time-label" id="current-time">00:00</span>
+                <input id="seek-range" class="seek-range" type="range" min="0" max="1000" value="0" aria-label="Seek through video" />
+                <span class="time-label" id="total-time">00:00</span>
+                <button class="compare-button" id="compare-button" type="button"><span>↔</span> Compare</button>
+              </div>
+            </div>
+            <div class="detail-note"><span class="detail-icon">✧</span><p><b>More detail, less distraction.</b> Hair, skin, fabric, product surfaces, and backgrounds can look clearer while noise and compression artifacts are softened.</p></div>
+          </div>
+
+          <aside class="panel settings-panel" aria-label="Enhancement settings">
+            <div class="panel-heading settings-heading"><div><div class="section-kicker">MAKE IT YOURS</div><h2>Enhancement</h2></div><span class="settings-number">01 — 03</span></div>
+            <div class="engine-banner"><span class="engine-icon">✳</span><div><b>AI model connection needed</b><small>This demo uses local browser adjustments. Neural restoration becomes available when a model provider is connected.</small></div></div>
+
+            <div class="setting-group">
+              <div class="setting-label-row"><label for="model-select">Enhancement model</label><span class="auto-tag">AUTO SELECT</span></div>
+              <div class="select-wrap"><select id="model-select"><option value="auto">Automatically choose the best model</option><option value="portrait">Portrait · skin & hair</option><option value="product">Product · fine surfaces</option><option value="lowlight">Low-light · lift shadows</option><option value="gaming">Gaming · crisp motion</option><option value="anime">Anime · clean edges</option></select><span class="select-chevron">⌄</span></div>
+            </div>
+
+            <div class="setting-group resolution-group">
+              <div class="setting-label-row"><span class="control-label">Output resolution</span><span class="resolution-hint" id="resolution-hint">Auto chooses for your clip</span></div>
+              <div class="resolution-options" role="group" aria-label="Output resolution">
+                <button class="resolution-option selected" data-resolution="auto" type="button"><b>Auto</b><small>Best fit</small></button>
+                <button class="resolution-option" data-resolution="2k" type="button"><b>2K</b><small>1440p</small></button>
+                <button class="resolution-option" data-resolution="4k" type="button"><b>4K</b><small>2160p</small></button>
+                <button class="resolution-option" data-resolution="8k" type="button"><b>8K</b><small>4320p</small></button>
+              </div>
+            </div>
+
+            <div class="setting-group strength-group">
+              <div class="setting-label-row"><label for="strength-range">Enhancement strength</label><span class="strength-value" id="strength-value">68%</span></div>
+              <input class="strength-range" id="strength-range" type="range" min="0" max="100" value="68" />
+              <div class="range-captions"><span>Subtle</span><span>Balanced</span><span>Strong</span></div>
+            </div>
+
+            <div class="settings-divider"></div>
+            <div class="setting-toggle-row"><span><b>Reduce noise</b><small>Soften grain & compression marks</small></span><label class="switch"><input id="denoise-toggle" type="checkbox" checked /><span class="switch-track"></span></label></div>
+            <div class="setting-toggle-row"><span><b>Keep original audio</b><small>Include the source soundtrack</small></span><label class="switch"><input id="audio-toggle" type="checkbox" checked /><span class="switch-track"></span></label></div>
+
+            <div class="settings-divider export-divider"></div>
+            <div class="setting-label-row export-label"><label for="format-select">Export format</label><span class="export-ready"><span class="status-dot"></span> READY</span></div>
+            <div class="select-wrap format-select-wrap"><select id="format-select" aria-describedby="format-help"></select><span class="select-chevron">⌄</span></div>
+            <small class="format-help" id="format-help">Available formats depend on your browser.</small>
+            <button class="enhance-button" id="enhance-button" type="button" disabled><span class="button-sparkle">✳</span><span id="enhance-button-label">Upload a video to begin</span><span class="button-arrow">→</span></button>
+            <button class="download-button" id="download-button" type="button" hidden><span>↓</span> Download enhanced video</button>
+            <div class="progress-wrap" id="progress-wrap" hidden><div class="progress-row"><span id="progress-label">Preparing your video…</span><b id="progress-percent">0%</b></div><div class="progress-track"><span id="progress-bar"></span></div><small id="progress-footnote">Keep this tab open while your video exports.</small></div>
+            <p class="file-disclaimer">Local demo mode. No file leaves your device.</p>
+          </aside>
+        </section>
+
+        <section class="benefits" aria-label="Enhancer benefits">
+          <div class="benefit"><span class="benefit-symbol">⌗</span><span><b>Cleaner footage</b><small>Reduce unwanted noise and artifacts.</small></span></div>
+          <div class="benefit"><span class="benefit-symbol">◫</span><span><b>Higher resolutions</b><small>Prepare clips for close-ups and large screens.</small></span></div>
+          <div class="benefit"><span class="benefit-symbol">⌁</span><span><b>One export away</b><small>Review your result and choose a format.</small></span></div>
+        </section>
+        <footer class="footer"><span>FRAME<span class="footer-accent">SHIFT</span> STUDIO</span><span>Created for the frames worth keeping.</span><a href="#top">Back to top ↑</a></footer>
+      </main>
+    </div>
+
+    <input id="file-input" type="file" accept="video/mp4,video/quicktime,video/x-m4v,video/3gpp,video/3gpp2,video/x-msvideo,video/avi,.mp4,.mov,.m4v,.3gp,.3g2,.avi" hidden />
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js?v=2" defer></script>
+  </body>
+</html>
